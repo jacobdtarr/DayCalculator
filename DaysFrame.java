@@ -4,6 +4,7 @@ import java.time.*;
 import java.lang.*;
 import java.awt.event.*;
 import java.time.temporal.*;
+import java.time.format.*;
 
 public class DaysFrame extends JFrame
 {
@@ -32,9 +33,11 @@ public class DaysFrame extends JFrame
 	{
 		public void actionPerformed(ActionEvent event) {
 			
-			if(DateTools.verifyDate(startingDateField.getText(), today))
+			try
 			{
-				firstDate = LocalDate.parse(startingDateField.getText(), DateTools.DATE_FORMAT);
+				DateTools.verifyDate(startingDateField.getText(), today);
+				
+				firstDate = LocalDate.parse(startingDateField.getText(), DateTools.correctFormatter);
 				
 				String countChoice = (String) dateOption.getSelectedItem();
 				
@@ -47,6 +50,13 @@ public class DaysFrame extends JFrame
 				else if (countChoice.equals("Years")) {
 					JOptionPane.showMessageDialog(null, ChronoUnit.YEARS.between(firstDate, today) + " Year(s)");
 				}
+			}
+			catch(DateTimeParseException dtpe) {
+				JOptionPane.showMessageDialog(null, dtpe.getMessage());
+			}
+			catch(NegativeDayException nde)
+			{
+				JOptionPane.showMessageDialog(null, nde.getMessage());
 			}
 		}
 		
