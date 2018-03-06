@@ -1,3 +1,6 @@
+/**
+* Exception for days after current day
+*/
 public class NegativeDayException extends IllegalArgumentException
 {
 		public NegativeDayException() {}
