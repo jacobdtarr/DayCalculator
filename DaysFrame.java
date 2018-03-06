@@ -6,9 +6,15 @@ import java.awt.event.*;
 import java.time.temporal.*;
 import java.time.format.*;
 
+/**
+* Java GUI Frame for counting time
+*/
 public class DaysFrame extends JFrame
 {
 	
+	/**
+	* Setup of GUI and listeners
+	*/
 	public DaysFrame() {
 		ImageIcon image = new ImageIcon("sun.gif");
 		setIconImage(image.getImage());
@@ -29,6 +35,9 @@ public class DaysFrame extends JFrame
 		startingDateField.addActionListener(calculateDaysListener);
 	}
 	
+	/**
+	* Listens for action and calculates period of time to users preferences
+	*/
 	class CalculateDaysListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event) {
